@@ -16,13 +16,14 @@ module.exports = (passport) => {
   passport.use('local-signup', new LocalStrategy(
   (username, password, done) => {
     process.nextTick(() => {
+      console.log('passport|local-signup');
       User.findOne({ username: username }, (err, user) => {
 
         if (err) {
           return done(err);
         }
         if (user) { 
-          return done(null, false,  { message : 'That username is already taken.'}); 
+          return done(null, null, { msg : 'That username is already taken.', param: 'username' }); 
         } else {
   
           userServices.addNew({username, password}, (newUser) => {
@@ -41,10 +42,10 @@ module.exports = (passport) => {
           return done(err);
         }
         if (!user) { 
-          return done(null, false,  { message: 'Incorrect userName or Password.'}); 
+          return done(null, false,  { msg: 'Incorrect userName or Password.', param: ''} ); 
         }
         if (!user.validPassword(password)){
-          return done(null, false,  { message: 'Incorrect userName or Password.'}); 
+          return done(null, false,  { msg: 'Incorrect userName or Password.', param: ''} ); 
         }
   
         return done(null, user);

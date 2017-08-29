@@ -11,8 +11,9 @@ module.exports = (app, passport) => {
     req.sanitize('username').trim();
     req.sanitize('password').escape();
     req.sanitize('password').trim();
+
     //Run the validators
-    let errors = req.validationErrors();
+    let errors = req.getValidationResult()
     console.log('my login', errors);
     if (errors) {
       return res.status(200).json({success: false, errors});
@@ -41,9 +42,11 @@ module.exports = (app, passport) => {
     }); 
   app.post('/signup', (req, res, next) => {
     //Check that the name field is not empty
-/*    req.checkBody('username', 'username is required').notEmpty(); 
-    req.checkBody('password', 'password is required').notEmpty(); 
-    
+    req.checkBody('username', 'username must be at least 3 chars long')
+      .isLength({ min: 3 });
+    req.checkBody('password', 'password must be at least 3 chars long')
+      .isLength({ min: 3 });
+
     //Trim and escape the name field. 
     req.sanitize('username').escape();
     req.sanitize('password').trim();
@@ -53,8 +56,9 @@ module.exports = (app, passport) => {
     if (errors) {
       return res.status(200).json(Object.assign({success: false, errors}));
     }
-*/
+
     passport.authenticate('local-signup', (err, user, info) => {
+      console.log('auth|local-signup', user, info);
       if (err) {
         return next(err);
       }
@@ -63,12 +67,13 @@ module.exports = (app, passport) => {
           if ( err ){
               return res.status(200).json({success: false});
           } else {
+            console.log('local-signup 2 ', user, info );
             const newUser = { username: user.username, id: user._id };
             return res.status(200).json(Object.assign({success: true, user: newUser}));
           }
         });      
       } else {
-          return res.status(200).json(Object.assign({success: false, info}));
+          return res.status(200).json(Object.assign({success: false, errors: [info]}));
       }
     })(req, res, next);
   });
