@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+  <header>
+    <% include ../public/header %>
+  </header>
+
+  <main class="container login">
+    <h4>Log In</h4>
+    <div class="row">
+      <form id="APP_login" method="POST" action="/login" class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">account_circle</i><input class="invalid" id="signup-form-username" name="username" type="text" value=""><label class="" for="signup-form-username">UserName</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">vpn_key</i><input class="invalid" id="signup-form-password" name="password" type="password" value=""><label for="signup-form-password">Password</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <button class="btn btn-block btn-lg waves-effect" type="submit">Login To Your Account</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+
+  <% include ../partials/footer-scripts %>
+
+</body>
+</html>

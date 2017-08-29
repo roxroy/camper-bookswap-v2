@@ -1,0 +1,77 @@
+{
+  "name": "camper-bookswap",
+  "version": "1.0.0",
+  "description": "Manage a book trading club and allow swapping of books between other users",
+  "engines": {
+    "node": "7.10.1",
+    "npm": "4.2.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "start-server": "nodemon server.js",
+    "build": "webpack --watch --colors",
+    "heroku-build": "webpack",
+    "heroku-postbuild": "npm install && npm run heroku-build",
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
+    "test:watch": "npm run test -- --watch",
+    "lint": "eslint src test server webpack"
+  },
+  "cacheDirectories": [
+    "node_modules"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roxroy/camper-bookswap.git"
+  },
+  "keywords": [
+    "mongoose",
+    "express",
+    "node",
+    "javascript",
+    "passport"
+  ],
+  "bugs": {
+    "url": "https://github.com/roxroy/camper-bookswap/issues"
+  },
+  "homepage": "https://github.com/roxroy/camper-bookswap#readme",
+  "dependencies": {
+    "babel-cli": "6.14.0",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.4.1",
+    "babel-polyfill": "^6.3.14",
+    "babel-preset-es2015": "^6.1.18",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "copy-webpack-plugin": "^0.2.0",
+    "css-loader": "^0.23.1",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "express-validator": "^3.2.1",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "html-webpack-plugin": "^2.16.1",
+    "mongoose": "^4.11.1",
+    "morgan": "^1.8.2",
+    "node-sass": "^3.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "sass-loader": "^3.2.0",
+    "shortid": "^2.2.8",
+    "webpack": "^2.6.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-import": "^2.2.0",
+    "nodemon": "^1.11.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  }
+}
